@@ -11,7 +11,11 @@ const router = createRouter({
     routes: [
         {
             path: "/",
-            component: HomePage,
+            components: {
+                default: HomePage,
+                // 手动指定路由视图 name： PostsRecommend:PostsRecommend
+                PostsRecommend,
+            },
             // 指定路由视图的名称，即 router-link中可用的 name 属性
             name: "home",
         },
@@ -20,18 +24,14 @@ const router = createRouter({
             // component: PostsPage,
             components: {
                 default: PostsPage,
-                // 手动指定路由视图 name： PostsRecommend:PostsRecommend
-                PostsRecommend,
                 // 自动缩写： PostsList: PostsList
                 PostsList,
             },
             name: "posts",
             children: [
                 {
-                    path: ":id",
-                    component: PostDetail,
-                    view: "detail",
-                    name: "post-detail",
+                    path: ":id/",
+                    redirect: "/posts/:id/detail",
                 },
             ],
         },
@@ -40,6 +40,11 @@ const router = createRouter({
             component: AboutPage,
             name: "about"
         },
+        {
+            path: "/posts/:id/detail",
+            component: PostDetail,
+            name: "post-detail"
+        }
     ]
 });
 

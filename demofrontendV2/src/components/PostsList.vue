@@ -1,4 +1,8 @@
 <template>
+  <posts-search
+      @search="emitFromSearch"
+  ></posts-search>
+
   <div class="post-list">
     <h1>📚Posts List</h1>
     <div v-for="(item,index) in posts.results" :key="index">
@@ -21,9 +25,13 @@
                       @change="changePage($event)"
   >
   </pagination-buttons>
+<!--  文章详情  -->
+  <router-view></router-view>
+
 </template>
 
 <script>
+import PostsSearch from "@/components/PostsSearch";
 import PaginationButtons from "@/components/PaginationButtons";
 
 export default {
@@ -32,6 +40,7 @@ export default {
     return {
       posts: {},
       hasPosts: false,
+      hasSearchResults: false,
     }
   },
   created() {
@@ -81,8 +90,12 @@ export default {
         this.getPost(pageNum);
       }
     },
+    emitFromSearch($event) {
+      this.hasSearchResults = $event;
+    },
   },
   components: {
+    PostsSearch,
     PaginationButtons
   }
 }
@@ -111,5 +124,7 @@ export default {
 
 .post-router-link:hover {
   color: #35495E;
+  /* 字体阴影 */
+  text-shadow: 0 0 5px #41B883;
 }
 </style>

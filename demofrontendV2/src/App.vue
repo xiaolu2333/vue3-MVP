@@ -17,6 +17,9 @@
   </div>
   <!--  顶级路由的指定出口 -->
   <div id="named-router-view">
+    <div id="PostsSearch-router-view" class="router-view">
+      <router-view name="PostsSearch"></router-view>
+    </div>
     <div id="PostsRecommend-router-view" class="router-view">
       <router-view name="PostsRecommend"></router-view>
     </div>
@@ -24,7 +27,6 @@
       <router-view name="PostsList"></router-view>
     </div>
   </div>
-
 
   <footer>
     <p>Powered by: Vue 3</p>
@@ -75,23 +77,16 @@ export default {
 }
 
 #named-router-view {
-  width: 90%;
   margin-bottom: 20px;;
-  overflow: hidden;
 }
 
 #named-router-view > #PostsRecommend-router-view {
   background-color: #fff;
-  width: 45%;
-  float: left;
-  margin-right: 10px;
   text-align: left;
 }
 
 #named-router-view > #PostsList-router-view {
   background-color: #fff;
-  width: 45%;
-  float: right;
   text-align: left;
 }
 
